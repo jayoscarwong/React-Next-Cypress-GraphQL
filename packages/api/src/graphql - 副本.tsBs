@@ -1,0 +1,37 @@
+import type { Express } from "express";
+import { createSchema, createYoga } from "graphql-yoga";
+
+const typeDefs = /* GraphQL */ `
+  type Post { id: ID!, title: String! }
+  type Query { posts(search: String): [Post!]! }
+  type Mutation { addPost(title: String!): Post! }
+`;
+
+const memoryPosts = [
+  { id: "1", title: "Hello from API" },
+  { id: "2", title: "Second post" },
+];
+
+const resolvers = {
+  Query: {
+    posts: (_: unknown, args: { search?: string }) => {
+      if (!args?.search) return memoryPosts;
+      const s = args.search.toLowerCase();
+      return memoryPosts.filter(p => p.title.toLowerCase().includes(s));
+    },
+  },
+  Mutation: {
+    addPost: (_: unknown, { title }: { title: string }) => {
+      const post = { id: String(memoryPosts.length + 1), title };
+      memoryPosts.push(post);
+      return post;
+    },
+  },
+};
+
+export const schema = createSchema({ typeDefs, resolvers });
+
+export function mountGraphQL(app: Express) {
+  const yoga = createYoga({ schema, graphqlEndpoint: "/graphql" });
+  app.use("/graphql", yoga);
+}

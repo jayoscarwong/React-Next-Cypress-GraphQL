@@ -1,0 +1,25 @@
+{
+  "name": "fullstack-intro",
+  "private": true,
+  "scripts": {
+    "dev:web": "pnpm --filter web dev",
+    "dev:api": "pnpm --filter api dev",
+    "test": "pnpm --filter web test",
+    "cypress": "pnpm --filter web cypress",
+    "dev:all": "concurrently -k -n WEB,API -c blue,green \"pnpm dev:web\" \"pnpm dev:api\""
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.23",
+    "@types/node": "^20.19.11",
+    "concurrently": "^9.2.1",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "graphql": "^16.11.0",
+    "graphql-http": "^1.22.4"
+  }
+}

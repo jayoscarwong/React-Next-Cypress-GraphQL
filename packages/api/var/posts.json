@@ -1,0 +1,21 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "Hello from API"
+    },
+    {
+      "id": "2",
+      "title": "Second post"
+    },
+    {
+      "id": "3",
+      "title": "New Post"
+    },
+    {
+      "id": "4",
+      "title": "Data Entryx"
+    }
+  ],
+  "nextId": 5
+}

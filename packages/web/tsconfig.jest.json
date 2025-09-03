@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "module": "CommonJS", "noEmit": false },
+  "include": ["lib/**/*.ts","lib/**/*.tsx","**/*.test.ts"]
+}
